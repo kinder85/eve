@@ -1,0 +1,45 @@
+> object learn_trigger_response python
+    from butler.brain import learn
+    from lib.learn import process_args
+
+    # i18n
+    OK = u"OK"
+    PARAM = u"quelque chose"
+
+    the_trigger, the_response = process_args(args, PARAM)
+    rs_code = u"+ {0}\n- {1}\n\n".format(the_trigger, the_response)
+    
+    learn(rs_code)
+    rs.reload_butler()
+    return OK
+< object
+
+> object learn_trigger_shortcut python
+    from butler.brain import learn
+    from lib.learn import process_args
+
+    # i18n
+    OK = u"OK"
+    PARAM = u"quelque chose"
+
+    the_trigger, the_response = process_args(args, PARAM)
+    rs_code = u"+ {0}\n@ {1}\n\n".format(the_trigger, the_response)
+
+    learn(rs_code)
+    rs.reload_butler()
+    return OK
+< object
+
+// ##feature## apprendre
+
+// le séparateur est __SEP__ et pas la virgule car la virgule peut être utilisée dans le trigger ou la réponse
+
+// trigger => réponse
++ (si|lorsque|quand) (je|on) [te] (dis|dit) * [je|on] [veux|veut|souhaite@s] [que] tu [me|nous] (repond@s|reponde@s|dise@s) *
+- <call>learn_trigger_response <star4>__SEP__<star6></call>
+
+// trigger => raccourci
++ (si|lorsque|quand) (je|on) [te] (dis|dit) * (ca|cela) (signifie|veut dire|equivaut a|correspond a) *
+- <call>learn_trigger_shortcut <star4>__SEP__<star7></call>
+
+

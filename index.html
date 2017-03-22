@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>eve</title>
+    <script type="text/javascript" src="/webiopi.js"></script>
+	<script type="text/javascript">
+
+       
+        
+         
+        function init() {
+                //setInterval(dht, 1000);
+        }
+
+        function Stop() {
+                webiopi().callMacro("STOP");
+        }
+
+        function Forward() {
+                webiopi().callMacro("FORWARD");
+        }
+
+
+        function Reverse() {
+               webiopi().callMacro("BACKWARD");
+        }
+
+        function TurnLeft() {
+               webiopi().callMacro("LEFT");
+        }
+
+        function TurnRight() {
+               webiopi().callMacro("RIGHT");
+        }
+     
+
+
+        
+	
+       webiopi().ready(init);
+		
+	</script>
+
+    <style type="text/css" style="width: auto; font-family: 'Franklin Gothic Book'; position: relative; height: 25px; left: 50%">
+        
+    </style>
+</head>
+<body>
+     
+    <p>
+        <input id="Checkbox1" type="checkbox" />mode auto</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+
+    <p>
+        
+        vitesse<input id="but1" type="button" value="avance" onmousedown="Forward()" onmouseup="Stop()" style="font-family: 'Trebuchet MS'; position: relative; left: 642px; top: 13px; width: 79px;" />&nbsp; </p>
+    <p>
+        delay<input id="but3" type="button" onmousedown="TurnLeft()" onmouseup="Stop()" value="gauche" style="font-family: 'Trebuchet MS'; position: relative; left: 559px; top: 4px; width: 79px;"/>
+        <input id="Button2" type="button" value="stop" onmousedown="Stop()" onmouseup="Stop()" style="font-family: 'Trebuchet MS'; position: relative; left: 570px; top: 5px; width: 79px;"/>
+        <input id="Button3" type="button" value="droite" onmousedown="TurnRight()" onmouseup="Stop()"style="font-family: 'Trebuchet MS'; position: relative; left: 586px; top: 3px; width: 79px;" /></p>
+    <p>
+        &nbsp;<input id="Button4" type="button" value="arriere" onmousedown="Reverse()" onmouseup="Stop()"style="font-family: 'Trebuchet MS'; position: relative; left: 682px; top: 6px; width: 79px;"/></p>
+
+</body>
+</html>

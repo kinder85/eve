@@ -1,0 +1,21 @@
+> object test_internet python
+from lib.network import test_internet
+cfg_i18n = {"OK" : "L'acces a internet est OK.",
+            "NO_IP_ACCESS" : "L'accès a internet ne marche pas.",
+            "NO_DNS_ACCESS" : "L'accès a internet via adresse IP fonctionne mais les accès via DNS ne semblent pas fonctionner."}
+return u"{0}".format(test_internet(rs.log, cfg_i18n))
+< object
+
+// ##feature## tester l'accès a internet
+
+/* ##suggest## 
+? .* (test|verif|connect).* (internet|reseau|web).*
+@ peux tu tester le reseau
+*/
+
++ shortcut test internet
+- <call>test_internet</call>
+
++ @peuxTu (tester|verifier) (le reseau|l access a internet|internet)
+@ shortcut test internet
+

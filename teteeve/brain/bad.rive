@@ -1,0 +1,14 @@
+// raccourci
++ shortcut pasgentil
+- Le fait que je ne sois qu'un bot ne justifie pas des méchancetés!
+- Ce n'est vraiment pas gentil de dire ça.
+
++ [*] (putain|connard|connasse|salope|salop|enculer|encule) [*] {weight=1}
+@ shortcut pasgentil
+
++ ta gueule [*]
+@ shortcut pasgentil
+
++ [*] casse@premierGroupe [*] couille@s [*]
+@ shortcut pasgentil
+

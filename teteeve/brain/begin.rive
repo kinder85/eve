@@ -1,0 +1,40 @@
+//////////////////////////////////////////////////
+// Gestion du pluriel/féminin en option
+// Exemple d'usage : pomme@s => corresond a pomme ou pommes
+! array s = |s
+! array e = |e
+! var name = eve
+
+//////////////////////////////////////////////////
+// Conjugaison des verbes
+// Exemple d'usage : allume@premierGroupe => allume, allumes, allumer, allumez
+//                   ajoute@premierGroupe => ajoute, ajoutes, ajouter, ajoutez
+! array premierGroupe = |s|r|z
+
+//////////////////////////////////////////////////
+// Raccourcis vers des classiques pour eviter l'usage de (..|..|..|..) partout
+
+// pour rappel, l'apostrophe est remplace par un espace par le butler
+! array moi = moi|nous
+
+! array pronom = le la les l 
+
+! array cible = a|de l|de la|de|du|dans le|dans la|dans l|dans|d|sur le|sur la|sur l
+
+! array quel = quel quelle quels quelles
+
+// pour les sensors 
+! array donneMoi = donne-moi|donnes-moi|donne moi|donnes moi|donne-nous|donnes-nous|donne nous|donnes nous|quel-est|quelle-est|quel est|quelle est|dis-moi|dis moi|dis-nous|dis nous|donner
+
+// pour des demandes
+// note, voir le can_you.rive qui gere ce tableau pour toutes les requetes
+! array peuxTu = peux tu nous|peux tu me|peux tu m|peux tu|peux-tu nous|peux-tu me|peux-tu m|peux-tu|est ce que tu peux nous|est ce que tu peux me|est ce que tu peux m|est ce que tu peux|est-ce que tu peux nous|est-ce que tu peux me|est-ce que tu peux m|est-ce que tu peux|pourrais tu nous|pourrais tu me|pourrais tu m|pourrais tu|pourrais-tu nous|pourrais-tu me|pourrais-tu m|pourrais-tu|est ce que tu pourrais nous|est ce que tu pourrais me|est ce que tu pourrais m|est ce que tu pourrais|est-ce que tu pourrais nous|est-ce que tu pourrais me|est-ce que tu pourrais m|est-ce que tu pourrais
+
+// pour se nommer
+! array jeSuis = je suis|je m appelle|je me nomme|je me prenomme|mon prenom est|mon identite est|mon surnom est|mon nom est
+
+//////////////////////////////////////////////////
+// Unités
+
+! array pourcent = pourcentage|pourcentages|pourcent|pourcents
+! array kg = kilogramme|kilogrammes|kilo gramme|kilo grammes|kilo|kilos|kg|kgs

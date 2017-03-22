@@ -1,0 +1,195 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_chat.aiml -->
+
+
+    <category>
+        <pattern>BONJOUR</pattern>
+        <template>
+            salut!
+        </template>
+    </category>
+
+     <category>
+        <pattern>BONJOUR *</pattern>
+        <template>
+            BONJOUR, MONSIEUR
+        </template>
+    </category>
+    
+    <category>
+        <pattern>EVE</pattern>
+        <template>
+            <random>
+                <li>bienvenu!</li> 
+                <li>ravie de te voir!</li> 
+                <li>que me veux tu?</li> 
+                <li>tes desirs sont des ordres!</li> 
+            </random>
+        </template>
+    </category>
+
+
+
+    <category>
+        <pattern>DIS MOI*</pattern>
+        <template>
+            <star/>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>REPETE *</pattern>
+        <template>
+            <star/>
+        </template>
+    </category>
+
+   <category>
+        <pattern>REPETE APRES MOI*</pattern>
+        <template>
+            <star/>
+        </template>
+    </category>
+
+    <category>
+        <pattern>DIT *</pattern>
+        <template>
+            <star/>
+        </template>
+    </category>
+
+    <category>
+        <pattern>EVE *</pattern>
+        <template>
+            <srai><star/></srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>* EVE</pattern>
+        <template>
+            <srai><star/></srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>QUI EST TU</pattern>
+        <template>
+            je suis eve
+        </template>
+    </category>
+
+    <category>
+        <pattern>QUI EST CE QUI TA CREER</pattern>
+        <template>
+            POLO m'a creer!
+        </template>
+    </category>
+
+    
+    
+    
+
+    <category>
+        <pattern>QUI EST POLO</pattern>
+        <template>
+            polo est mon pere!
+        </template>
+    </category>
+
+    
+    <category>
+        <pattern>QUI EST TON PERE</pattern>
+        <template>
+            POLO est mon pere.
+        </template>
+    </category>
+
+    <category>
+        <pattern>QUI EST TA MERE</pattern>
+        <template>
+            mon pere est un queutard alors va savoir.
+        </template>
+    </category>
+
+    
+   
+    <category>
+        <pattern>QUEL HEURE EST IL</pattern>
+        <template>
+            il est<system>date "+%l %M %P"</system>
+        </template>
+    </category>
+
+    <category>
+        <pattern>QUEL HEURE IL EST</pattern>
+        <template>
+            <srai>QUEL HEURE EST IL</srai>
+        </template>
+    </category>
+
+    
+    <category>
+    <pattern>*</pattern>
+    <template>
+        <random>
+           <li>desole j'ai pas compris.</li>
+           <li>je sais pas mais tu peux m'apprendre.</li>
+        </random>
+    </template>
+    </category>
+    
+    <category>
+        <pattern>QUESQUE *</pattern>
+        <template>
+            TU VEUX QUE JE CHERCHE
+        </template>
+    </category>
+
+    <category>
+        <pattern>QUI *</pattern>
+        <template>
+            TU VEUX QUE JE CHERCHE
+        </template>
+    </category>
+
+    <category>
+        <pattern>OU *</pattern>
+        <template>
+            TU VEUX QUE JE CHERCHE
+        </template>
+    </category>
+
+    
+    <category>
+        <pattern>POURQUOI *</pattern>
+        <template>
+            TU VEUX QUE JE CHERCHE
+        </template>
+    </category>
+
+    <category>
+        <pattern>OUI</pattern>
+        <that>TU VEUX QUE JE CHERCHE</that>
+        <template>
+            <srai>GOOGLE <input index="2"/></srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>JOUE MOI UNE MUSIQUE</pattern>
+        <template>
+            quelle musique?
+        </template>
+    </category>
+
+    
+     <category>
+        <pattern>*</pattern>
+        <that>QUELLE MUSIQUE</that>
+        <template>
+            <srai>PLAY SONG <input index="1"/></srai>
+        </template>
+    </category>
+	</aiml>

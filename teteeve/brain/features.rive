@@ -1,0 +1,15 @@
+> object get_butler_features python
+    # i18n
+    I_KNOW = u"Je suis capable de : \n"
+    return u"{0} {1}".format(I_KNOW, rs.the_features)
+< object
+
+
++ shortcut features
+- <call>get_butler_features</call>
+
++ que (peux|sais)[-]tu faire
+@ shortcut features
+
++ de quoi es[-]tu capable
+@ shortcut features

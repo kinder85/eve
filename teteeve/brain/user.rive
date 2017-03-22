@@ -1,0 +1,45 @@
+// On definit le nom /////////////////////////////////////////////////
++ (@jeSuis) *
+- <set name=<star2>>Ok. Tu es <get name>.
+
++ qui suis[-]je 
+* <get name> == undefined => Je ne sais pas comment tu t'appelles.
+- Tu es <get name>.
+- Tu t'appelles <get name>.
+
++ sais[-]tu qui je suis
+- Qui es tu ?
+
+// RAZ du nom /////////////////////////////////////////////////
++ oublie mon (prenom|identite|surnom|nom)
+- <set name=undefined>Ok.
+
++ je ne suis personne
+- <set name=undefined>Ok.
+
++ oublie[s][-]moi
+- <set name=undefined>Ok.
+
+// Reponse generique pour la demande 'qui es tu ?' ////////////
+// Exemple d'usage dans un package : 
+//   On donne une indication sur soi. Si le nom est connu, on traite. Sinon on defini un dialogue et on demande qui on est
+//   + je fais * [@pourcent] de (muscle@s|masse musculaire)
+//   * <get name> == undefined  => <set dialog=set_muscle><set muscle=<star>>Qui es tu ?
+//   - <call>do_command_per_reference fr_FR, DT_Scaling, set_muscle, <get name>, <star1></call>
+//
+//   A la reposne a la question 'qui es tu' on redirige suivant le dialogue vers la question initiale pour le traitement. On definit en passant le nom et on raz le dialogue courant.
+//   + *
+//   % qui es tu ?
+//   * <get dialog> == get_weight =>  <set dialog=undefined> <set name=<star>> {@quel est mon poids}
+//   * <get dialog> == set_weight =>  <set dialog=undefined> <set name=<star>> {@je pese <get weight> kg}
+//
+// Il est possible d'utiliser le bloc suivant dans plusieurs packages sans souci
+//   + *
+//   % qui es tu ?
+//   * ...
+
++ *
+% qui es tu ?
+- <set dialog=undefined> <set name=<star>>Ok, tu es <get name>.
+
+

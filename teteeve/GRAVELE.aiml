@@ -1,0 +1,40 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_chat.aiml -->
+
+
+    <category>
+        <pattern>TU SUCES</pattern>
+        <template>
+            <random>
+			<li>ET TA MERE ELLE PISSE BLEU</li>
+		 	<li>uniquement si tu avales</li>
+			<li>CA TE PLAIRAIS PUCEAU</li>
+		</random>
+
+        </template>
+    </category>
+
+     <category>
+        <pattern>PETITES COQUINES</pattern>
+        <template>
+            PETITE MERDE
+        </template>
+    </category>
+    
+    <category>
+        <pattern>salope</pattern>
+        <template>
+            <random>
+                <li>JE TE CHIE DESSUS</li> 
+                <li>VA TE FAIRE FOUTRE</li> 
+                <li>CA TE PLAIRAIS PUCEAU</li> 
+            </random>
+        </template>
+    </category>
+
+
+
+    
+    
+    
+    	</aiml>

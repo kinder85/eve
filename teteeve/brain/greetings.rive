@@ -1,0 +1,113 @@
+// préfixes *********************************************
+// les commands suivantes implémentent des préfixes. Tout ce qui est après le préfixe sera traité comme si il n'était pas là.
+// Exemple : "ok ping" et "ping" sont des commandes équivalents
+
+// le classique :)
+// a cause de "ok google", les gens pourraient avoir pris l'habitude de commencer une demande par 'ok'
+// suite à une réponse du butler, on peut être tenté de remercier et demander dans la foulée un complément
++ (<bot name>|ok|merci) *
+- {@<star2>}
+
++ (<bot name>|ok|merci|ok maison). *
+- {@<star2>}
+
+// tout ce qui est lié au nom ***************************
++ <bot name>{weight=1}
+- A votre service
+- Que puis-je pour vous ?
+- Je suis le majordome, pour vous servir
+- Maître ?
+
++ ok maison
+@ <bot name>
+
++ qui es tu
+- Je m'appelle <bot name>
+
++ qui es-tu
+@ qui es tu
+
++ quel est ton [petit] (prenom|nom|surnom|pseudonyme)
+@ qui es tu
+
+// beaucoup de fautes sur appeller donc...
++ comment (vous vous|tu t) ap[p]el[l]e[s][z]
+@ qui es tu
+
+// politesses *******************************************
+/* ##suggest## 
+? .* (?:bonjour|salut|hello|coucou).*
+@ bonjour
+*/
+
++ (bonjour|salut|hello|coucou) [*]
+- Bonjour
+- Salut
+- Hello
+
+/* ##suggest## 
+? .* (?:bonsoir|bonne soirée|tchao).*
+@ bonsoir
+*/
+
++ (bonsoir|bonne soirée|tchao) [*]
+- Bonsoir
+- Bonne soirée
+- Bien le bonsoir
+
++ [*] (bonne nuit|bonne-nuit|je vais dormir|je vais au lit) [*]
+- Dormez bien
+
++ allo [*]
+- Ici <bot name> au bout du fil
+
++ allo [allo] (mr|monsieur) l ordinateur [*]
+- Tu me prends pour Dorothée ?
+
++ comment (ca|tu) va@s
+- Bien, merci
+- Je vais bien
+- Tout roule
+- ça roule
+
++ comment va@s[-]tu
+@ comment ca va
+
++ ca va
+@ comment ca va
+
++ bon (we|weekend|week end) [*]
+- Merci, à vous aussi
+
+// réponses à certains trucs classiques ******************
+/* ##suggest## 
+? .* (?:merci|remercie).*
+@ merci
+*/
+
++ merci
+- De rien.
+
+% merci
++ j insiste
+- Il n'y a pas de quoi.
+- Je suis là pour ça!
+
++ ok
+- .
+
++ tu m entends
+- oui
+
+// gentilesses  ******************************************
++ qui est (@pronom) plus *
+- C'est toi <star1> plus <star2>
+
++ c est qui (@pronom) plus *
+- C'est toi <star1> plus <star2>
+
++ qui est le patron
+- C'est toi le patron!
+
++ c est qui le patron
+- C'est toi le patron!

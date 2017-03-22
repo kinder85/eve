@@ -1,0 +1,13 @@
+// raccourci
++ shortcut justeunbot
+- Je ne suis qu'une intelligence artificielle.
+- Je ne suis pas humain, certains concepts m'échappent encore.
+
++ tu ne comprends rien [*]
+@ shortcut justeunbot
+
++ (tu|vous) * (debile|idiote|idiot|bete|stupide|conne|con) [*] {weight=1}
+@ shortcut justeunbot
+
++ ce [n] est pas complique [*]
+@ shortcut justeunbot

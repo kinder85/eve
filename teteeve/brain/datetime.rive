@@ -1,0 +1,84 @@
+> object get_time python
+    #i18n
+    DISPLAY_FORMAT = "%-H heure %M "
+    LOCALE = "fr_FR.UTF-8"
+    ERROR_LOCALE = u"La locale configurée n'est pas bonne ou installée sur le système : {0}".format(LOCALE)
+
+
+    import locale
+    import time
+    import traceback
+    from common.utils import ucode
+    now = time.localtime(time.time())
+    try:
+        locale.setlocale(locale.LC_ALL, str(LOCALE))
+    except:
+        rs.log.error(u"Error : {0}".format(traceback.format_exc()))
+        return ERROR_LOCALE
+    return ucode(time.strftime(DISPLAY_FORMAT, now))
+< object
+
+> object get_date python
+    #i18n
+    DISPLAY_FORMAT = u"%A %d %B"
+    LOCALE = "fr_FR.UTF-8"
+    ERROR_LOCALE = u"La locale configurée n'est pas bonne ou installée sur le système : {0}".format(LOCALE)
+
+
+    import locale
+    import time
+    import traceback
+    from common.utils import ucode
+    now = time.localtime(time.time())
+    try:
+        locale.setlocale(locale.LC_ALL, str(LOCALE))
+    except:
+        rs.log.error(u"Error : {0}".format(traceback.format_exc()))
+        return ERROR_LOCALE
+    return ucode(time.strftime(DISPLAY_FORMAT, now))
+< object
+
+
+// heure ********************************************
+/* ##suggest## 
+? .* heure(?:.*)?
+@ quelle heure est-il
+*/
+
++ shortcut time
+- Il est <call>get_time</call>
+
+// ##feature## donner l'heure
++ donne@premierGroupe [@moi] l heure
+@ shortcut time
+
++ @quel heure [il est|est il|est-il]
+@ shortcut time
+
++ il est @quel heure
+@ shortcut time
+
++ @quel [est l] heure
+@ shortcut time
+
+// date ********************************************
+/* ##suggest## 
+? .* date(?:.*)?
+@ quel jour sommes nous
+*/
+
++ shortcut date
+- Nous sommes le <call>get_date</call>
+
+// ##feature## donner la date
++ @quel est la date [*]
+@ shortcut date
+
++ (indique|donne|donne)@premierGroupe [@moi] la date [*]
+@ shortcut date
+
++ @quel (jour|date) (sommes-nous|sommes nous|est-on|est on|nous sommes|on est)
+@ shortcut date
+
++ (nous sommes|on est) @quel (jour|date)
+@ shortcut date
