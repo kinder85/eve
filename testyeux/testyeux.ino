@@ -1,7 +1,7 @@
 #include "LedControl.h"
 
  
-
+int rx_byte = 0;
 LedControl lc=LedControl(12,11,10,2);  // Pins: DIN,CLK,CS, # of Display connected
 
 
@@ -275,17 +275,12 @@ byte eye2ToRight[] =
 void setup()
 
 {
-
+  Serial.begin(115200);
   lc.shutdown(0,false);  // Wake up displays
-
   lc.shutdown(1,false);
-
   lc.setIntensity(0,1);  // Set intensity levels
-
   lc.setIntensity(1,1);
-
   lc.clearDisplay(0);  // Clear Displays
-
   lc.clearDisplay(1);
 
 }
@@ -299,9 +294,7 @@ void SetLeftEye(byte* mood)
   for (int i = 0; i < 8; i++)  
 
   {
-
     lc.setRow(1,i,mood[i]);
-
   }
 
 }
@@ -322,13 +315,8 @@ void SetRightEye(byte* mood)
 
 }
 
- 
-
-void loop()
-
-{
-
-    SetLeftEye(eyeOpened);
+void normal(){
+  SetLeftEye(eyeOpened);
 
     SetRightEye(eyeOpened);
 
@@ -340,128 +328,83 @@ void loop()
 
     delay(400);
 
-    SetLeftEye(eyeOpened);
+    
 
-    SetRightEye(eyeOpened);
+    
 
-    delay(2000); 
+    
+  } 
+void lov()
+{
+  SetLeftEye(love);
+  SetRightEye(love);
+    delay(2000);
+    
+}
+void check(){
+  SetLeftEye(eyeToRight);
 
+    SetRightEye(eyeToRight);
+
+    delay(500);
     SetLeftEye(eyeToLeft);
 
     SetRightEye(eyeToLeft);
 
-    delay(1000);
-
-    SetLeftEye(eyeOpened);
-
-    SetRightEye(eyeOpened);
-
-    delay(1000);
-
-    SetLeftEye(eyeToRight);
-
-    SetRightEye(eyeToRight);
-
-    delay(1000);
-
-    SetLeftEye(eyeOpened);
-
-    SetRightEye(eyeOpened);
-
-    delay(1000);
-
-    SetRightEye(eyeClosed);
-
-    delay(200); 
-
-    SetLeftEye(eyeOpened);
-
-    SetRightEye(eyeOpened);
-
-    delay(1000);
-
-
-
-    SetLeftEye(eyeOff);
-
-    SetRightEye(eyeOff);
-
-    delay(1000);
-
-
-
-    SetLeftEye(love);
-
-    SetRightEye(love);
-
-    delay(2000);
-
-    SetLeftEye(happy);
-
-    SetRightEye(happy);
-
-    delay(2000);
-
-
-
-    SetLeftEye(eye2Opened);
-
-    SetRightEye(eye2Opened);
-
-    delay(2000);
-
-    SetLeftEye(eye2Closed);
-
-    SetRightEye(eye2Closed);
-
-    delay(400);
-
-    SetLeftEye(eye2Opened);
-
-    SetRightEye(eye2Opened);
-
-    delay(2000); 
+    delay(500);
+}
+void checkgauche(){
+  
+}
+void exa(){
+ 
 
     SetLeftEye(eye2ToUpperLeft);
 
     SetRightEye(eye2ToUpperLeft);
 
-    delay(1000);
-
-    SetLeftEye(eye2Opened);
-
-    SetRightEye(eye2Opened);
-
-    delay(1000);
-
-    SetLeftEye(eye2ToRight);
-
-    SetRightEye(eye2ToRight);
-
-    delay(1000);
-
-    SetLeftEye(eye2Opened);
-
-    SetRightEye(eye2Opened);
-
-    delay(1000);
-
-    SetRightEye(eye2Closed);
-
-    delay(200); 
-
-    SetLeftEye(eye2Opened);
-
-    SetRightEye(eye2Opened);
-
-    delay(1000);
-
-
-
+    delay(2000);
     SetLeftEye(eyeOff);
 
     SetRightEye(eyeOff);
 
     delay(1000);
 
+   
+}
+void loop()
+
+{
+ 
+if(Serial.available() > -1){
+    
+    
+int rx_byte = Serial.read();  
+ 
+ 
+ 
+ 
+ if (rx_byte == 'l') {
+      lov();
+         
+
+    }
+    // if it's an L (ASCII 76) turn off the LED:
+    if (rx_byte == 'e') {
+      exa();
+                  
+
+    }
+   if (rx_byte == 'c') {
+      check();
+                  
+
+    }//move back in max speed
+  
+
+else{
+  normal();
+}
+}
+   
 }
