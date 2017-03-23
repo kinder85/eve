@@ -1,9 +1,16 @@
 #include "LedControl.h"
+#include <ShiftRegister74HC595.h>
+#include <Scheduler.h>
 
  
 int rx_byte = 0;
-LedControl lc=LedControl(12,11,10,2);  // Pins: DIN,CLK,CS, # of Display connected
-
+LedControl lc=LedControl(12,11,13,2);  // Pins: DIN,CLK,CS, # of Display connected
+ShiftRegister74HC595 sr (1, 10, 8, 9);
+int buttonState = 0;
+int micState = 0;
+const int buttonPin = 12;
+const int micPin = 2;
+const int ledPin =  5;
 
 
 // Put values in arrays
@@ -54,7 +61,28 @@ byte eyeOpened[] =
 
 };
 
- 
+byte pligauche[]
+{
+  B00000100,
+  B00001010,
+  B00010010,
+  B00110011,
+  B11110011,
+  B01100110,
+  B00111100 
+};
+
+byte plidroit[]
+{
+  B00100000,
+  B01010000,
+  B01001000,
+  B11001100,
+  B11001111,
+  B01000010,
+  B01100010,
+  B00111100
+};
 
 byte eyeClosed[] =
 
@@ -222,7 +250,16 @@ byte eye2Closed[] =
 
 };
 
- 
+byte quest[]
+{
+  B00000000,
+  B00011000,
+  B00100100,
+  B00001000,
+  B00001000,
+  B00000000,
+  B00001000 
+};
 
 byte eye2ToUpperLeft[] =
 
@@ -282,7 +319,10 @@ void setup()
   lc.setIntensity(1,1);
   lc.clearDisplay(0);  // Clear Displays
   lc.clearDisplay(1);
-
+  pinMode(buttonPin, INPUT);
+pinMode(micPin, INPUT);
+pinMode(ledPin, OUTPUT);
+Scheduler.startLoop(loop2);
 }
 
  
@@ -341,6 +381,36 @@ void lov()
     delay(2000);
     
 }
+
+void colere()
+{
+  SetLeftEye(plidroit);
+  SetRightEye(pligauche);
+    delay(2000);
+    
+}
+void triste()
+{
+  SetLeftEye(pligauche);
+  SetRightEye(plidroit);
+    delay(2000);
+    
+}
+void joix()
+{
+  SetLeftEye(happy);
+  SetRightEye(happy);
+    delay(2000);
+    
+}
+
+void question()
+{
+  SetLeftEye(quest);
+  SetRightEye(quest);
+    delay(2000);
+    
+}
 void check(){
   SetLeftEye(eyeToRight);
 
@@ -353,26 +423,46 @@ void check(){
 
     delay(500);
 }
-void checkgauche(){
-  
-}
+
 void exa(){
  
 
     SetLeftEye(eye2ToUpperLeft);
-
     SetRightEye(eye2ToUpperLeft);
-
-    delay(2000);
+    delay(1000);
     SetLeftEye(eyeOff);
-
     SetRightEye(eyeOff);
-
     delay(1000);
 
    
 }
-void loop()
+void loop() {
+  // put your main code here, to run repeatedly:
+ buttonState = digitalRead(buttonPin);
+ 
+  
+    micState = digitalRead(micPin);
+    if (buttonState == HIGH) {
+      if (micState == LOW) {
+      for (int i = 0; i < 8; i++) {
+    
+        sr.set(i, HIGH); // set single pin HIGH
+        delay(50); 
+    
+        }
+       for (int i = 8; i > 0; i--) {
+    
+        sr.set(i, LOW); // set single pin HIGH
+        delay(50); 
+    
+        }
+    }
+    else{
+        sr.setAllLow();
+        }
+    }   
+}
+void loop2()
 
 {
  
@@ -389,7 +479,7 @@ int rx_byte = Serial.read();
          
 
     }
-    // if it's an L (ASCII 76) turn off the LED:
+    
     if (rx_byte == 'e') {
       exa();
                   
@@ -399,12 +489,31 @@ int rx_byte = Serial.read();
       check();
                   
 
-    }//move back in max speed
-  
+    }
+    if (rx_byte == 'r') {
+      colere();
+                  
+
+    }
+    if (rx_byte == 'j') {
+      joix();
+                  
+
+    }
+    if (rx_byte == 't') {
+      triste();
+                  
+
+    }
+    if (rx_byte == 'q') {
+      question();
+                  
+
+    }
 
 else{
   normal();
 }
 }
-   
+ yield();  
 }
