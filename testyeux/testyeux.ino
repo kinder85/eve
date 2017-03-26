@@ -4,12 +4,12 @@
 
  
 int rx_byte = 0;
-LedControl lc=LedControl(12,11,13,2);  // Pins: DIN,CLK,CS, # of Display connected
+LedControl lc=LedControl(44,48,46,2);  // Pins: DIN,CLK,CS, # of Display connected
 ShiftRegister74HC595 sr (1, 10, 8, 9);
 int buttonState = 0;
 int micState = 0;
-const int buttonPin = 12;
-const int micPin = 2;
+const int buttonPin = 24;
+const int micPin = 22;
 const int ledPin =  5;
 
 
@@ -436,7 +436,7 @@ void exa(){
 
    
 }
-void loop() {
+void loop2() {
   // put your main code here, to run repeatedly:
  buttonState = digitalRead(buttonPin);
  
@@ -460,9 +460,10 @@ void loop() {
     else{
         sr.setAllLow();
         }
-    }   
+    }
+    delay(1);   
 }
-void loop2()
+void loop()
 
 {
  
